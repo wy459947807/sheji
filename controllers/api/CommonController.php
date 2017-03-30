@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\api;
 
 use Yii;
 use yii\filters\AccessControl;
@@ -15,9 +15,11 @@ use app\common\Rbac;
 use app\common\InstanceFactory;
 use app\filters\RbacFilter;
 class CommonController extends Controller {
+   
     public $objList=array();//对象实例列表
     public $serviceList=array();//服务列表
     public $layout = false; //禁用yii默认布局
+    public $enableCsrfValidation = false;
     public $result = array(
         "status" => 200, 
         "info" => "操作成功！",
@@ -25,12 +27,25 @@ class CommonController extends Controller {
     );//返回数据格式
     
     
-    //rbac权限过滤
     public function behaviors() {
-        return [
-            'rbac' => [
-                'class' => RbacFilter::className(),
-            ]
+         return [
+            'corsFilter' => [//跨域访问过滤
+                'class' => \yii\filters\Cors::className(),
+                'cors' => [
+                    // restrict access to
+                    'Origin' => ['*'],//填写允许访问的域名列表例如：http://www.myserver.com
+                    //'Access-Control-Request-Method' => ['POST','GET','PUT','OPTIONS'],
+                    // Allow only POST and PUT methods
+                    'Access-Control-Request-Headers' => ['*'],
+                    // Allow only headers 'X-Wsse'
+                    //'Access-Control-Allow-Credentials' => true,
+                    // Allow OPTIONS caching
+                    //'Access-Control-Max-Age' => 3600,
+                    // Allow the X-Pagination-Current-Page header to be exposed to the browser.
+                    //'Access-Control-Expose-Headers' => ['X-Pagination-Current-Page'],
+                ],
+
+            ],
         ];
     }
     

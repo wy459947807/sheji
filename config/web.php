@@ -12,6 +12,10 @@ $config = [
             'cookieValidationKey' => 'kJ6Okh7FRlCXiBjqObisJGUhVFlwhHXZ',
             'enableCookieValidation' => false,
             'enableCsrfValidation' => false,
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+                'text/json' => 'yii\web\JsonParser',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
