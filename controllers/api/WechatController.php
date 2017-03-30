@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
 
 class WechatController extends CommonController implements CommonInterface {
     
-    public function init() {
+    public function init() { 
         parent::init();
         //注册服务
         //$this->registService("UserService");//注册用户服务
