@@ -27,7 +27,7 @@
  *   			break;
  *   		default:
  *   			$weObj->text("help info")->reply();
- *   }
+ *   } 
  *
  *   //获取菜单操作:
  *   $menu = $weObj->getMenu();
